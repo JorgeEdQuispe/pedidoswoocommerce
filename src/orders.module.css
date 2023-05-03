@@ -1,0 +1,99 @@
+.container {
+    margin-top: 20px;
+}
+
+.items-orders {
+    margin-top: 20px;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 15px;
+    text-align: initial;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item {
+    margin-top: 20px;
+}
+
+.order-number {
+    font-weight: bold;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.order-total {
+    font-weight: bold;
+    font-size: 12px
+}
+
+.order-status {
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.order-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.order-item-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.order-item-name {
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0;
+}
+
+.order-date {
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.image-port {
+    width: 470px;
+    height: auto;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.customer-note {
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 5px;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.costumer-note h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.title {
+    background-color: #cf0a55;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 17px;
+}
+
+.processing {
+    background-color: #cf0a55;
+    color: #fff;
+    width: fit-content;
+    padding: 3px;
+    border-radius: 5px;
+}
