@@ -1,0 +1,125 @@
+import React from "react";
+import styles from "./orders.module.css";
+
+const ViewOrder = ({ selectedOrder, updateOrderStatus }) => {
+  return (
+    <div className={`${styles["selected-order"]} container-fluid col-9`}>
+      <div className="col-md-12">
+        <p
+          style={{
+            fontSize: "10px",
+            fontWeight: "bold",
+            backgroundColor: "white",
+            border: "1px solid black",
+            padding: "10px",
+          }}
+        >
+          Número: {selectedOrder.number} <span></span>
+          Total: {selectedOrder.total}
+          <span> </span>
+          {selectedOrder.status === "processing"
+            ? "Pagado"
+            : selectedOrder.status}
+          <span> </span>
+          Fecha de compra:{" "}
+          {new Date(selectedOrder.date_created).toLocaleString("es-PE", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            hour12: false,
+            timeZone: "America/Lima",
+          })}
+        </p>
+      </div>
+      <div className="row">
+        <div className="col-md-8">
+          <h4>Artículos</h4>
+          <ul>
+            {selectedOrder.line_items.map((item) => (
+              <li key={item.id} className="mb-3">
+                {item.image && (
+                  <img
+                    src={item.image.src}
+                    alt={item.name}
+                    className={`${styles["image-port"]} mr-3`}
+                  />
+                )}
+                <span>{item.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="col-md-4">
+          <div className={`${styles["section"]}`}>
+            <h4 className={`${styles["title"]}`}>Facturación</h4>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.billing.first_name}{" "}
+              {selectedOrder.billing.last_name}
+            </p>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.billing.address_1}
+            </p>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.billing.address_2}
+            </p>
+            <p className={`${styles["info"]}`}>
+              Teléfono: {selectedOrder.billing.phone}
+            </p>
+          </div>
+          <div className={`${styles["section"]}`}>
+            <h4 className={`${styles["title"]}`}>Envío</h4>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.shipping.first_name}{" "}
+              {selectedOrder.shipping.last_name}
+            </p>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.shipping.address_1}
+            </p>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.shipping.address_2}
+            </p>
+            <p className={`${styles["info"]}`}>
+              {selectedOrder.shipping.city},{selectedOrder.shipping.state}{" "}
+              {selectedOrder.shipping.postcode}
+            </p>
+            <p className={`${styles["info"]}`}>
+              Celular: {selectedOrder.meta_data[0].value}
+            </p>
+            <p className={`${styles["info"]}`}>
+              fecha y Hora de entrega:{" "}
+              {new Date(selectedOrder.meta_data[2].value).toLocaleString(
+                "es-PE",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  timeZone: "America/Lima",
+                }
+              )}
+              {selectedOrder.meta_data[1].value}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className={`${styles["customer-note"]} row mb-3`}>
+        <h2 className={`${styles["title"]}`}>Nota</h2>
+        <p>{selectedOrder.customer_note}</p>
+      </div>
+      <div className="row">
+        <div className="col-md-12">
+          <button
+            className={`${styles["btn"]} ${styles["btn-primary"]} mr-3`}
+            onClick={() => updateOrderStatus(selectedOrder.id, "completed")}
+          >
+            Enviado
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ViewOrder;

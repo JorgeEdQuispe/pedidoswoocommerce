@@ -1,19 +1,19 @@
 import React from "react";
-import "./App.css";
 import styles from "./orders.module.css";
 
 const OrderItem = ({ handleOrderClick, order }) => {
+  const { id, number, line_items, date_created, total, status } = order;
   return (
     <div
-      className={`${styles["list-group-item"]}, ${styles["items-orders"]} `}
-      key={order.id}
+      className={`${styles["list-group-item"]} ${styles["items-orders"]}`}
+      key={id}
       onClick={() => handleOrderClick(order)}
     >
       <div>
-        <h4 className={styles["order-number"]}>Nr: {order.number}</h4>
-        <div className="">
-          {order.line_items.map((item) => (
-            <div className={`${styles["order-item"]}`} key={item.id}>
+        <h4 className={styles["order-number"]}>Nr: {number}</h4>
+        <div>
+          {line_items.map((item) => (
+            <div className={styles["order-item"]} key={item.id}>
               {/* {item.image && (
                           <img
                             src={item.image.src}
@@ -21,21 +21,23 @@ const OrderItem = ({ handleOrderClick, order }) => {
                             className={`${styles["order-item-image"]}`}
                           />
                         )} */}
-              <p className={`${styles["order-item-name"]} my-2`}>{item.name}</p>
+              <p className={`${styles["order-item-name"]} my-2`}>
+                ({item.quantity}) {item.name}
+              </p>
             </div>
           ))}
           <p className={styles["order-date"]}>
-            {new Date(order.date_created).toLocaleString("es-ES", {
+            {new Date(date_created).toLocaleString("es-ES", {
               hour12: true,
             })}
           </p>
         </div>
-        <p className={styles["order-total"]}>Total: S/.{order.total}</p>
+        <p className={styles["order-total"]}>Total: S/.{total}</p>
         <p
-          className={`${styles["order-status"]} ${order.status ===
-            "processing" && styles["processing"]}`}
+          className={`${styles["order-status"]} ${status === "processing" &&
+            styles["processing"]}`}
         >
-          Estado: {order.status === "processing" ? "Pagado" : order.status}
+          Estado: {status === "processing" ? "Pagado" : status}
         </p>
       </div>
     </div>

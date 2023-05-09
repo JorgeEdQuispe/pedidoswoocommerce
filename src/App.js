@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Orders from "./Orders";
 import "bootstrap/dist/css/bootstrap.min.css";
 
